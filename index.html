@@ -7,11 +7,13 @@
     <link rel="stylesheet" href="styles.css" />
   </head>
   <body>
-    <div id="end-screen" class="end-screen ">
+    <div id="end-screen" class="end-screen">
       <div class="container">
         <h1>Reaktions Test</h1>
         <div class="reaction-time-text">100 ms</div>
-        <button onclick="switchscreenmainmenu()" class="play-again-btn">Neu Starten</button>
+        <button onclick="switchscreenmainmenu()" class="play-again-btn">
+          Neu Starten
+        </button>
       </div>
     </div>
     <div class="main-menu active">
@@ -22,7 +24,15 @@
       </div>
     </div>
     <div class="clickable-area">Jetzt klicken!</div>
-    <div class="false-screen">zu früh gedrückt</div>
+    <div class="false-screen">
+      <div class="container">
+        <h1>Zu früh gedrückt</h1>
+        <p>Versuche es noch einmal</p>
+        <button onclick="switchscreenmainmenu()" class="play-again-btn">
+          Neu Starten
+        </button>
+      </div>
+    </div>
     <script src="main.js"></script>
   </body>
 </html>

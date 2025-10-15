@@ -20,15 +20,28 @@ function messuretime() {
 function switchscreenmainmenu() {
   const mainMenu = document.querySelector(".main-menu");
   const endScreen = document.querySelector(".end-screen");
+  const falsescreen = document.querySelector(".false-screen");
   mainMenu.classList.add("active");
   endScreen.classList.remove("active");
+  falsescreen.classList.remove("active");
 }
 
 function switchscreenendscreen() {
   const mainMenu = document.querySelector(".main-menu");
   const endScreen = document.querySelector(".end-screen");
+  const falsescreen = document.querySelector(".false-screen");
   mainMenu.classList.remove("active");
+  falsescreen.classList.remove("active");
   endScreen.classList.add("active");
+}
+
+function switchscreenfalsescreen() {
+  const mainMenu = document.querySelector(".main-menu");
+  const endScreen = document.querySelector(".end-screen");
+  const falsescreen = document.querySelector(".false-screen");
+  mainMenu.classList.remove("active");
+  endScreen.classList.remove("active");
+  falsescreen.classList.add("active");
 }
 
 function switchscreenclickablearea() {
@@ -58,8 +71,18 @@ function starttest() {
   switchscreenclickablearea();
   const clickableArea = document.querySelector(".clickable-area");
   clickableArea.style.backgroundColor = "gray";
-  clickableArea.innerText = "Noch nicht"
+  clickableArea.innerText = "Noch nicht";
   clickableArea.removeEventListener("click", messuretime);
+  let isGreen = false;
+  clickableArea.onclick = function () {
+    if (!isGreen) {
+      switchscreenfalsescreen();
+      clickableArea.onclick = null;
+    } else {
+      messuretime();
+      clickableArea.onclick = null;
+    }
+  };
   const delay = generateRandomTime();
   setTimeout(() => {
     clickableArea.style.backgroundColor = "green";
@@ -68,3 +91,5 @@ function starttest() {
     clickableArea.addEventListener("click", messuretime);
   }, delay);
 }
+
+switchscreenmainmenu();
