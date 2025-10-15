@@ -1,4 +1,5 @@
 let starttime, endtime;
+let reactionTimes = [];
 function generateRandomTime() {
   // soll eine zufällige zahl generieren
   const randomtime = Math.floor(Math.random() * 1000) * 5;
@@ -8,9 +9,16 @@ function generateRandomTime() {
 function messuretime() {
   endtime = Date.now();
   const reactiontime = endtime - starttime;
+  reactionTimes.push(reactiontime);
+  const sortedTimes = [...reactionTimes].sort((a, b) => a - b);
   document.querySelector(
     ".reaction-time-text"
   ).innerText = `${reactiontime} ms`;
+  const highscoreslist = document.querySelector(".highscores");
+  highscoreslist.innerHTML =
+    "<strong>Highscores:</strong><br>" +
+    sortedTimes.map((time, index) => `${index + 1}. ${time} ms`).join("<br>");
+  console.log("Alle Zeiten:", reactionTimes);
   switchscreenendscreen();
   document
     .querySelector(".clickable-area")
@@ -67,7 +75,7 @@ function switchscreens() {
 }
 
 function starttest() {
-  // soll den Test starten$
+  // soll den Test starten
   switchscreenclickablearea();
   const clickableArea = document.querySelector(".clickable-area");
   clickableArea.style.backgroundColor = "gray";
